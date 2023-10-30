@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./pages/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Соцсеть Mesto</title>
+    <meta name="author" content="Евгений Чесноков">
+</head>
+
+<body class="page">
+    <form class="pop-up"> <!--pop-up_hide Для скрытия Pop-UP окна-->
+        <div class="pop-up__form">
+        <p class="pop-up__edit">Редактировать профиль</p>
+        <fieldset class="pop-up__name">
+            <legend>Жак-Ив Кусто</legend>
+        </fieldset>
+        <fieldset class="pop-up__info">Исследователь океана</fieldset>
+        <button class="pop-up__button-edit">Сохранить</button>
+    </div>
+    <button class="pop-up__button-close"></button>
+    </form>
+    <header class="header">
+        <img class="header__logo" src="./images/header-logo.svg" alt="Лого Mesto">
+    </header>
+    <main>
+        <section class="profile">
+            <section class="profile__avatar">
+                <img class="profile__image" src="./images/profile-avatar.png" alt="Аватар">
+            </section>
+            <div class="profile__info">
+                <div class="profile__information">
+                    <p class="profile__name">Жак-Ив Кусто</p>
+                    <button class="profile__button-edit"></button>
+                </div>
+                <p class="profile__about">Исследователь океана</p>
+            </div>
+            <button class="profile__button-add"></button>
+        </section>
+        <section class="elements">
+            <div class="elements__element">
+                <img class="elements__photo" src="./images/kirill-pershin.jpeg" alt="Карачаевск">
+                <div class="elements__info">
+                    <p class="elements__text">Карачаевск</p>
+                    <Button class="elements__like"></Button>
+                </div>
+            </div>
+            <div class="elements__element">
+                <img class="elements__photo" src="./images/elbrus.jpeg" alt="Гора Эльбрус">
+                <div class="elements__info">
+                    <p class="elements__text">Гора Эльбрус</p>
+                    <Button class="elements__like"></Button>
+                </div>
+            </div>
+            <div class="elements__element">
+                <img class="elements__photo" src="./images/dombai.jpeg" alt="Домбай">
+                <div class="elements__info">
+                    <p class="elements__text">Домбай</p>
+                    <Button class="elements__like"></Button>
+                </div>
+            </div>
+            <div class="elements__element">
+                <img class="elements__photo" src="./images/elbrus.jpeg" alt="Гора Эльбрус">
+                <div class="elements__info">
+                    <p class="elements__text">Гора Эльбрус</p>
+                    <Button class="elements__like"></Button>
+                </div>
+            </div>
+            <div class="elements__element">
+                <img class="elements__photo" src="./images/dombai.jpeg" alt="Домбай">
+                <div class="elements__info">
+                    <p class="elements__text">Домбай</p>
+                    <Button class="elements__like"></Button>
+                </div>
+            </div>
+            <div class="elements__element">
+                <img class="elements__photo" src="./images/kirill-pershin.jpeg" alt="Карачаево-Черкессия">
+                <div class="elements__info">
+                    <p class="elements__text">Карачаево-Черкессия</p>
+                    <Button class="elements__like"></Button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">© 2020 Mesto Russia</footer>
+    <script src="/scrypt.js"></script>
+</body>

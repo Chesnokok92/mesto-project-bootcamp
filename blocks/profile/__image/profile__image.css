@@ -1,0 +1,8 @@
+.profile__image {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+    min-width: 120px;
+    min-width: 120px;
+}

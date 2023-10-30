@@ -1,0 +1,10 @@
+.elements__info {
+    display: flex;
+    margin: auto auto auto 21px;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 246px;
+    max-width: 246px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}

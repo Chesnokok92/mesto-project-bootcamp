@@ -1,0 +1,21 @@
+.pop-up__edit {
+    width: 358px;
+    height: 23px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding: 0;
+    margin-top: 34px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000;
+    text-align: left;
+}
+
+@media screen and (max-width: 767px) {
+    .pop-up__edit {
+        max-width: 238px;
+        font-size: 18px;
+    }
+}
