@@ -1,0 +1,9 @@
+.pop-up__picOpen{
+    display: flex;
+    position: relative;
+    width: 816px;
+    height: 540px;
+    margin: auto;
+    z-index: 4;
+    opacity: 1;
+}

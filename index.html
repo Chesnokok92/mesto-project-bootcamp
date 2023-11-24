@@ -11,17 +11,6 @@
 </head>
 
 <body class="page">
-    <form class="pop-up"> <!--pop-up_hide Для скрытия Pop-UP окна-->
-        <div class="pop-up__form">
-        <p class="pop-up__edit">Редактировать профиль</p>
-        <fieldset class="pop-up__name">
-            <legend>Жак-Ив Кусто</legend>
-        </fieldset>
-        <fieldset class="pop-up__info">Исследователь океана</fieldset>
-        <button class="pop-up__button-edit">Сохранить</button>
-    </div>
-    <button class="pop-up__button-close"></button>
-    </form>
     <header class="header">
         <img class="header__logo" src="./images/header-logo.svg" alt="Лого Mesto">
     </header>
@@ -32,58 +21,74 @@
             </section>
             <div class="profile__info">
                 <div class="profile__information">
-                    <p class="profile__name">Жак-Ив Кусто</p>
-                    <button class="profile__button-edit"></button>
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <button type="submit" class="button profile__button-edit" id="profile"></button>
                 </div>
-                <p class="profile__about">Исследователь океана</p>
+                <h2 class="profile__about">Исследователь океана</h2>
             </div>
-            <button class="profile__button-add"></button>
+            <button type="submit" class="profile__button-add" id="pictureAdd"></button>
         </section>
         <section class="elements">
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/kirill-pershin.jpeg" alt="Карачаевск">
-                <div class="elements__info">
-                    <p class="elements__text">Карачаевск</p>
-                    <Button class="elements__like"></Button>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/elbrus.jpeg" alt="Гора Эльбрус">
-                <div class="elements__info">
-                    <p class="elements__text">Гора Эльбрус</p>
-                    <Button class="elements__like"></Button>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/dombai.jpeg" alt="Домбай">
-                <div class="elements__info">
-                    <p class="elements__text">Домбай</p>
-                    <Button class="elements__like"></Button>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/elbrus.jpeg" alt="Гора Эльбрус">
-                <div class="elements__info">
-                    <p class="elements__text">Гора Эльбрус</p>
-                    <Button class="elements__like"></Button>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/dombai.jpeg" alt="Домбай">
-                <div class="elements__info">
-                    <p class="elements__text">Домбай</p>
-                    <Button class="elements__like"></Button>
-                </div>
-            </div>
-            <div class="elements__element">
-                <img class="elements__photo" src="./images/kirill-pershin.jpeg" alt="Карачаево-Черкессия">
-                <div class="elements__info">
-                    <p class="elements__text">Карачаево-Черкессия</p>
-                    <Button class="elements__like"></Button>
-                </div>
-            </div>
+            <template id="card__template">
+                <article class="elements__element">
+                    <button class="elements__thrash" type="submit"></button>
+                    <img class="elements__photo" alt=" Фото" onclick="openfullpicture()" />
+                    <div class="elements__info">
+                        <h2 class="elements__text"></h2>
+                        <button class="elements__like" type="submit">
+                        </button>
+                    </div>
+                </article>
+            </template>
         </section>
     </main>
-    <footer class="footer">© 2020 Mesto Russia</footer>
-    <script src="/scrypt.js"></script>
+    <footer class="footer">
+        <p class="footer__text"> &#169; 2023 Mesto Russia</p>
+    </footer>
+    <section class="pop-up__all">
+        <form class="pop-up">
+            <div class="pop-up__form">
+                <button type="submit" class="pop-up__button-close"></button>
+                <h3 class="pop-up__edit">Редактировать профиль</h3>
+                <input type="text" class="pop-up__input pop-up_name" id="inputName" placeholder="Имя" value="Имя" />
+                <input type="text" class="pop-up__input pop-up_info" id="inputInfo" placeholder="О себе"
+                    value="О себе" />
+                <button type="submit" class="pop-up__button-edit">Сохранить</button>
+            </div>
+        </form>
+    </section>
+    <section class="pop-up__all" id="pictureAddPop">
+        <form class="pop-up">
+            <div class="pop-up__form">
+                <button type="submit" class="pop-up__button-close"></button>
+                <h3 class="pop-up__edit">Новое место</h3>
+                <input type="text" class="pop-up__input pop-up_name" id="inputTitle" placeholder="Название"
+                    value="Название" />
+                <input type="text" class="pop-up__input pop-up_info" id="inputLinkPicture"
+                    placeholder="Ссылка на картинку" value="Ссылка на картинку" />
+                <button type="submit" class="pop-up__button-edit" id="newPicture">Сохранить</button>
+            </div>
+        </form>
+    </section>
+    <section class="pop-up__all" id="pictureFull">
+        <form class="pop-up__picture">
+            <div class="pop-up__fullpicture" id="picF">
+                <div class="pop-up__picOpen" id="picO">
+                </div>
+                <button type="submit" class="pop-up__button-close"></button>
+            </div>
+        </form>
+    </section>
+    <template id="card__template">
+        <article class="elements__element">
+            <button class="elements__thrash" type="submit"></button>
+            <img class="elements__photo" alt=" Фото" />
+            <div class="elements__info">
+                <h2 class="elements__text"></h2>
+                <button class="elements__like" type="submit">
+                </button>
+            </div>
+        </article>
+    </template>
+    <script src="/scripts/scrypt.js"></script>
 </body>

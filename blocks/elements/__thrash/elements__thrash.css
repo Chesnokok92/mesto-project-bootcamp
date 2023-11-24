@@ -1,0 +1,17 @@
+.elements__thrash {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-image: url(../../../images/Trash.svg);
+    width: 18px;
+    height: 19px;
+    object-fit: contain;
+    border: none;
+    background-color: transparent;
+}
+
+.elements__thrash:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

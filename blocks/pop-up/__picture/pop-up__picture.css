@@ -1,0 +1,10 @@
+.pop-up__picture {
+    display: flex;
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    margin: auto;
+    z-index: 3;
+    background-color: #000;
+    opacity: 1;
+}
