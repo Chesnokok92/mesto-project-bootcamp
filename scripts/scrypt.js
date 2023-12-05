@@ -25,7 +25,7 @@ const initialCards = [
     }
 ];
 
-const popup = document.querySelector('.pop-up__all');
+const popup = document.querySelector('.profile-popup');
 const popupPicture = document.getElementById('pictureAddPop');
 const openPopupButtons = document.getElementById('profile');
 const closePopupButtons = document.querySelector('.pop-up__button-close');
@@ -37,6 +37,7 @@ const inputLinkPicture = document.getElementById('inputLinkPicture').textContent
 const nameInput = document.querySelector('#inputName');
 const jobInput = document.querySelector('#inputInfo');
 const formElement = document.querySelector('.pop-up');
+const formInput = formElement.querySelector('.pop-up__input')
 const cardsContainer = document.querySelector(".elements");
 const cardsTemplate = document.querySelector("#card__template").content;
 const newPictureButton = document.getElementById('newPicture');
@@ -44,7 +45,22 @@ const pictures = document.querySelector('elements');
 const newName = document.getElementById('inputTitle').value;
 const newLink = document.getElementById('inputLinkPicture').value;
 const fullPic = document.getElementById('pictureFull');
-const picF = document.querySelector('pop-up__fullpicture');
+const popupErrors = popup.querySelector('.pop-up__errors');
+
+const closePopup = function () {
+    popup.classList.remove('pop-up__all_active');
+};
+
+
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closePopup()
+    }
+});
+
+const openPopup = function () {
+    popup.classList.add('pop-up__all_active');
+};
 
 const cardsInfo = initialCards.map(function (item) {
     return {
@@ -65,6 +81,7 @@ function renderCard({ name, link }) {
         .cloneNode(true);
     placeElement.querySelector(".elements__text").textContent = name;
     placeElement.querySelector(".elements__photo").src = link;
+    placeElement.querySelector(".elements__photo").alt = name;
 
     cardsContainer.prepend(placeElement);
 }
@@ -78,12 +95,16 @@ newPictureButton.addEventListener('click', (e) => {
     const createBlock = document.createElement('article');
     createBlock.className = 'elements__element';
     createBlock.insertAdjacentHTML('beforeend', `
-    <img class="elements__photo" src="${newLink}" alt=" Фото" />
-            <div class="elements__info">
-                <h2 class="elements__text">${newName}</h2>
-                <button class="elements__like" type="submit">
-                </button>
-            </div>
+    <button class="elements__thrash" type="submit"></button>
+                    <button class="elements__button" type="submit">
+                        <img class="elements__photo"  src="${newLink}"  alt="${newName}" />
+                    </button>
+                    <div class="elements__info">
+                    <h2 class="elements__text">${newName}</h2>
+                        <button class="elements__like" type="submit">
+                        </button>
+                    </div>
+
   `);
     cardsContainer.insertAdjacentElement('afterbegin', createBlock,);
     pictureAddPop.classList.remove('pop-up__all_active');
@@ -95,27 +116,32 @@ openPopupButtons.addEventListener('click', (e) => {
     popup.classList.add('pop-up__all_active');
     document.getElementById('inputName').value = nameText;
     document.getElementById('inputInfo').value = infoText;
-})
+});
 
 closePopupButtons.addEventListener('click', (e) => {
     e.preventDefault();
-    popup.classList.remove('pop-up__all_active');
-})
+    closePopup()
+});
+
+popup.addEventListener("click", (evt) => {
+    if (evt.currentTarget === evt.target) {
+        closePopup()
+    }
+  });
 
 openPopupAddPicture.addEventListener('click', (e) => {
     e.preventDefault();
     pictureAddPop.classList.add('pop-up__all_active');
     document.getElementById('inputTitle').value = inputTitle;
     document.getElementById('inputLinkPicture').value = inputLinkPicture;
-})
-
+});
 
 function handleFormSubmit(evt) {
     evt.preventDefault();
     const newName = document.getElementById("inputName").value;
     const newInfo = document.getElementById("inputInfo").value;
-    let updateName = document.querySelector('.profile__name');
-    let updateInfo = document.querySelector('.profile__about');
+    const updateName = document.querySelector('.profile__name');
+    const updateInfo = document.querySelector('.profile__about');
     updateName.textContent = newName;
     updateInfo.textContent = newInfo;
 };
@@ -134,9 +160,55 @@ deletePic.forEach(deletePic => {
         listItem.remove();
     });
 });
+const newPic = document.querySelectorAll('elements__photo');
+const picF = document.querySelectorAll('.elements__button');
+const picText = document.getElementById('picText');
+picF.forEach(picF => {
+    picF.addEventListener('click', function () {
+        const popPic = document.getElementById('picO');
+        fullPic.classList.add('pop-up__all_active');
+        const imageName = document.querySelector(".elements__text").textContent;
+        const imageUrl = document.querySelector(".elements__photo").src;
 
-function openfullpicture() {
-    fullPic.classList.add('pop-up__all_active');
-    
-   // document.getElementById("picO").innerHTML = "<img src='https://img.gazeta.ru/files3/486/17459486/russss-pic_32ratio_1200x800-1200x800-29042.jpg' />";
-};
+        const picUrlPop = document.createElement('img');
+        picUrlPop.className = 'pop-up__picOpen';
+        picUrlPop.src = imageUrl;
+
+        const picTextPop = document.createElement('h2');
+        picTextPop.className = 'pop-up__picText';
+        picTextPop.textContent = imageName;
+
+        console.log(imageName);
+        console.log(imageUrl);
+        console.log(picUrlPop);
+
+        popPic.replaceWith(picUrlPop);
+        picText.replaceWith(picTextPop);
+    });
+});
+// поверхностное копирование попробовать
+
+
+// Функция, которая добавляет класс с ошибкой
+const showInputError = (popup) => {
+    popupErrors.classList.add('pop-up__errors_active');
+  };
+  
+  // Функция, которая удаляет класс с ошибкой
+  const hideInputError = (popup) => {
+    popupErrors.classList.remove('pop-up__errors_active');
+  };
+  
+  // Функция, которая проверяет валидность поля
+  const isValid = () => {
+    if (!formInput.validity.valid) {
+      // Если поле не проходит валидацию, покажем ошибку
+      showInputError();
+    } else {
+      // Если проходит, скроем
+      hideInputError();
+    }
+  };
+  
+  // Вызовем функцию isValid на каждый ввод символа
+  formInput.addEventListener('input', isValid); 
