@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+    <link rel="stylesheet" href="../pages/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Соцсеть Mesto</title>
@@ -48,56 +48,61 @@
         <p class="footer__text"> &#169; 2023 Mesto Russia</p>
     </footer>
     <section class="profile-popup">
-        <form class="pop-up">
+        <form class="pop-up" novalidate>
             <div class="pop-up__form">
                 <button type="submit" class="pop-up__button-close"></button>
                 <h3 class="pop-up__edit">Редактировать профиль</h3>
                 <input type="text" class="pop-up__input pop-up_name" id="inputName" placeholder="Имя" value="Имя"
                     minlength="2" maxlength="40" required />
-                    <span class="pop-up__errors">Вы пропустили это поле.</span>
+                    <span class="pop-up__errors_name">Вы пропустили это поле.</span>
                 <input type="text" class="pop-up__input pop-up_info" id="inputInfo" placeholder="О себе" value="О себе"
                     minlength="2" maxlength="200" required />
-                    <span class="pop-up__errors">Вы пропустили это поле.</span>
-                <button type="submit" class="pop-up__button-edit">Сохранить</button>
+                    <span class="pop-up__errors_info">Вы пропустили это поле.</span>
+                <button disabled type="submit" class="pop-up__button-edit" id="buttonEdit">Сохранить</button>
             </div>
         </form>
     </section>
-    <section class="profile-popup" id="pictureAddPop">
-        <form class="pop-up">
+    <section class="pictureNew-popup" id="pictureAddPop">
+        <form class="pop-up" novalidate>
             <div class="pop-up__form">
-                <button type="submit" class="pop-up__button-close"></button>
+                <button type="submit" class="pop-up__button-close_new" id="closeNewPictures"></button>
                 <h3 class="pop-up__edit">Новое место</h3>
                 <input type="text" class="pop-up__input pop-up_name" id="inputTitle" placeholder="Название"
                     value="Название" minlength="2" maxlength="30" required />
-                    <span class="pop-up__errors">Вы пропустили это поле.</span>
+                    <span class="pop-up__errors_title">Вы пропустили это поле.</span>
                 <input type="url" class="pop-up__input pop-up_info" id="inputLinkPicture"
                     placeholder="Ссылка на картинку" value="Ссылка на картинку" required />
-                    <span class="pop-up__errors">Введите адрес сайта.</span>
-                <button type="submit" class="pop-up__button-edit" id="newPicture">Сохранить</button>
+                    <span class="pop-up__errors_link">Введите адрес сайта.</span>
+                <button disabled type="submit" class="pop-up__button-edit" id="newPictureButtonAdd">Сохранить</button>
             </div>
         </form>
     </section>
-    <section class="profile-popup" id="pictureFull">
-        <form class="pop-up pop-up__picture">
+    <section class="pictureFull-popup" id="pictureFull">
+        <form class="pop-up pop-up__picture" novalidate>
             <div class="pop-up__fullpicture" id="picF">
                 <div class="pop-up__picOpen" id="picO"></div>
                 <h2 class="pop-up__picText" id="picText"></h2>
-                <button type="submit" class="pop-up__button-close"></button>
-            </div>
+                <button type="submit" class="pop-up__button-close_full"></button>
+        </div>
         </form>
     </section>
-    <template id="card__template">
+    <template id="card__template"id='parentContainer'>
         <article class="elements__element">
             <button class="elements__thrash" type="submit"></button>
             <button class="elements__button" type="submit">
                 <img class="elements__photo" alt=" Фото" />
             </button>
-            <div class="elements__info">
+            <div class="elements__info" >
                 <h2 class="elements__text"></h2>
                 <button class="elements__like" type="submit">
                 </button>
             </div>
         </article>
     </template>
-    <script src="/scripts/scrypt.js"></script>
+    <!-- <script src="/scripts/scrypt.js"></script> -->
+    <script type='module' src="./index.js"></script>
+    <script type='module' src="../components/validate.js"></script>
+    <script type='module' src="../components/card.js"></script>
+    <script type='module' src="../components/modal.js"></script>
+    <script type='module' src="../components/utils.js"></script>
 </body>

@@ -1,9 +1,5 @@
-const numbers = [2, 3, 5];
+import '../pages/index.css'; // добавьте импорт главного файла стилей 
 
-// Стрелочная функция. Не запнётся ли на ней Internet Explorer?
-const doubledNumbers = numbers.map(number => number * 2);
-
-console.log(doubledNumbers); // 4, 6, 10
 
 import arhiz from '../images/arkhyz.jpg';
 import chelyabinskayaOblast from '../images/chelyabinsk-oblast.jpg';
@@ -11,8 +7,6 @@ import ivanovo from '../images/ivanovo.jpg';
 import kamcatka from '../images/kamchatka.jpg';
 import holmogorsyRayon from '../images/kholmogorsky-rayon.jpg';
 import baikal from '../images/baikal.jpg';
-
-import '../pages/index.css'; 
 
 
 
@@ -43,43 +37,8 @@ const initialCards = [
     }
 ];
 
-const popup = document.querySelector('.profile-popup');
-const popupPicture = document.getElementById('pictureAddPop');
-const openPopupButtons = document.getElementById('profile');
-const closePopupButtons = document.querySelector('.pop-up__button-close');
-const openPopupAddPicture = document.getElementById('pictureAdd');
-const nameText = document.querySelector('.profile__name').textContent;
-const infoText = document.querySelector('.profile__about').textContent;
-const inputTitle = document.getElementById('inputTitle').textContent;
-const inputLinkPicture = document.getElementById('inputLinkPicture').textContent;
-const nameInput = document.querySelector('#inputName');
-const jobInput = document.querySelector('#inputInfo');
-const formElement = document.querySelector('.pop-up');
-const formInput = formElement.querySelector('.pop-up__input')
-const cardsContainer = document.querySelector(".elements");
-const cardsTemplate = document.querySelector("#card__template").content;
-const newPictureButton = document.getElementById('newPicture');
-const pictures = document.querySelector('elements');
-const newName = document.getElementById('inputTitle').value;
-const newLink = document.getElementById('inputLinkPicture').value;
-const fullPic = document.getElementById('pictureFull');
-const popupErrors = popup.querySelector('.pop-up__errors');
 
-const closePopup = function () {
-    popup.classList.remove('pop-up__all_active');
-};
-
-
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-        closePopup()
-    }
-});
-
-const openPopup = function () {
-    popup.classList.add('pop-up__all_active');
-};
-
+//рендер карточек
 const cardsInfo = initialCards.map(function (item) {
     return {
         name: item.name,
@@ -104,90 +63,46 @@ function renderCard({ name, link }) {
     cardsContainer.prepend(placeElement);
 }
 
-newPictureButton.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const newName = document.getElementById('inputTitle').value;
-    const newLink = document.getElementById('inputLinkPicture').value;
-
-    const createBlock = document.createElement('article');
-    createBlock.className = 'elements__element';
-    createBlock.insertAdjacentHTML('beforeend', `
-    <button class="elements__thrash" type="submit"></button>
-                    <button class="elements__button" type="submit">
-                        <img class="elements__photo"  src="${newLink}"  alt="${newName}" />
-                    </button>
-                    <div class="elements__info">
-                    <h2 class="elements__text">${newName}</h2>
-                        <button class="elements__like" type="submit">
-                        </button>
-                    </div>
-
-  `);
-    cardsContainer.insertAdjacentElement('afterbegin', createBlock,);
-    pictureAddPop.classList.remove('pop-up__all_active');
-});
 
 
-openPopupButtons.addEventListener('click', (e) => {
-    e.preventDefault();
-    popup.classList.add('pop-up__all_active');
-    document.getElementById('inputName').value = nameText;
-    document.getElementById('inputInfo').value = infoText;
-});
+const numbers = [2, 3, 5];
 
-closePopupButtons.addEventListener('click', (e) => {
-    e.preventDefault();
-    closePopup()
-});
+// Стрелочная функция. Не запнётся ли на ней Internet Explorer?
+const doubledNumbers = numbers.map(number => number * 2);
 
-popup.addEventListener("click", (evt) => {
-    if (evt.currentTarget === evt.target) {
-        closePopup()
-    }
-  });
+console.log(doubledNumbers); // 4, 6, 10
 
-openPopupAddPicture.addEventListener('click', (e) => {
-    e.preventDefault();
-    pictureAddPop.classList.add('pop-up__all_active');
-    document.getElementById('inputTitle').value = inputTitle;
-    document.getElementById('inputLinkPicture').value = inputLinkPicture;
-});
+const popupPictureFull = document.querySelector('.pictureFull-popup');
+const popupPictureOverlay = document.querySelector('.pop-up__picture');
+const popupPicture = document.getElementById('pictureAddPop');
+const nameText = document.querySelector('.profile__name').textContent;
+const infoText = document.querySelector('.profile__about').textContent;
+const inputTitle = document.getElementById('inputTitle').textContent;
+const inputLinkPicture = document.getElementById('inputLinkPicture').textContent;
+const nameInput = document.querySelector('#inputName');
+const jobInput = document.querySelector('#inputInfo');
+const cardsContainer = document.querySelector(".elements");
+const cardsTemplate = document.querySelector("#card__template").content;
+const pictures = document.querySelector('elements');
+const popupErrorsName = document.querySelector('.pop-up__errors_name');
+const popupErrorsInfo = document.querySelector('.pop-up__errors_info');
+const newName = document.getElementById('inputTitle').value;
+const newLink = document.getElementById('inputLinkPicture').value;
+const fullPic = document.getElementById('pictureFull');
+const popup = document.querySelector('.profile-popup');
+const openPopupAddPicture = document.getElementById('pictureAdd');
+const popupPictureNew = document.querySelector('.pictureNew-popup');
+const openPopupButtons = document.getElementById('profile');
 
-function handleFormSubmit(evt) {
-    evt.preventDefault();
-    const newName = document.getElementById("inputName").value;
-    const newInfo = document.getElementById("inputInfo").value;
-    const updateName = document.querySelector('.profile__name');
-    const updateInfo = document.querySelector('.profile__about');
-    updateName.textContent = newName;
-    updateInfo.textContent = newInfo;
-};
-formElement.addEventListener('submit', handleFormSubmit);
+import {formErrorLink} from '../components/validate.js';
 
-
-const likeButton = document.querySelectorAll('.elements__like');
-likeButton.forEach(likeButton => {
-    likeButton.addEventListener('click', () => likeButton.classList.toggle('elements__like_active'));
-});
-
-const deletePic = document.querySelectorAll('.elements__thrash');
-deletePic.forEach(deletePic => {
-    deletePic.addEventListener('click', function () {
-        const listItem = deletePic.closest('.elements__element');
-        listItem.remove();
-    });
-});
-const newPic = document.querySelectorAll('elements__photo');
-const picF = document.querySelectorAll('.elements__button');
-const picText = document.getElementById('picText');
-picF.forEach(picF => {
-    picF.addEventListener('click', function () {
+//Открытие фото в большом окне
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('elements__photo')) {
         const popPic = document.getElementById('picO');
         fullPic.classList.add('pop-up__all_active');
-        const imageName = document.querySelector(".elements__text").textContent;
-        const imageUrl = document.querySelector(".elements__photo").src;
-
+        const imageName = event.target.closest('.elements__element').querySelector(".elements__text").textContent;
+        const imageUrl = event.target.src;
         const picUrlPop = document.createElement('img');
         picUrlPop.className = 'pop-up__picOpen';
         picUrlPop.src = imageUrl;
@@ -200,33 +115,105 @@ picF.forEach(picF => {
         console.log(imageUrl);
         console.log(picUrlPop);
 
-        popPic.replaceWith(picUrlPop);
-        picText.replaceWith(picTextPop);
-    });
-});
-// поверхностное копирование попробовать
+        popPic.innerHTML = '';
+        popPic.appendChild(picUrlPop);
+        popPic.appendChild(picTextPop);
 
-
-// Функция, которая добавляет класс с ошибкой
-const showInputError = (popup) => {
-    popupErrors.classList.add('pop-up__errors_active');
-  };
-  
-  // Функция, которая удаляет класс с ошибкой
-  const hideInputError = (popup) => {
-    popupErrors.classList.remove('pop-up__errors_active');
-  };
-  
-  // Функция, которая проверяет валидность поля
-  const isValid = () => {
-    if (!formInput.validity.valid) {
-      // Если поле не проходит валидацию, покажем ошибку
-      showInputError();
-    } else {
-      // Если проходит, скроем
-      hideInputError();
     }
-  };
-  
-  // Вызовем функцию isValid на каждый ввод символа
-  formInput.addEventListener('input', isValid); 
+});
+
+
+//Открытие попап
+const openPopup = function () {
+    popup.classList.add('pop-up__all_active');
+};
+export {openPopup};
+//Открытие попап новой карточки
+const openPopupNew = function () {
+    popupPictureNew.classList.add('pop-up__all_active');
+};
+//Открытие попап большого фото
+const openPopupFull = function () {
+    popupPictureFull.classList.add('pop-up__all_active');
+};
+
+
+//открытие попап добавления карточки
+openPopupAddPicture.addEventListener('click', (e) => {
+    e.preventDefault();
+    pictureAddPop.classList.add('pop-up__all_active');
+    document.getElementById('inputTitle').value = inputTitle;
+    document.getElementById('inputLinkPicture').value = inputLinkPicture;
+});
+
+//функция закрытия попап большой фотографии
+const closePopupFull = function () {
+    popupPictureFull.classList.remove('pop-up__all_active');
+    console.log('Popup closedFull!');
+};
+
+popup.addEventListener('click', function (event) {
+    if (event.target.classList.contains('pop-up__button-close')) {
+        event.preventDefault();
+        closePopup();
+    }
+});
+popupPictureNew.addEventListener('click', function (event) {
+    if (event.target.classList.contains('pop-up__button-close_new')) {
+        event.preventDefault();
+        closePopupNew();
+    }
+});
+popupPictureFull.addEventListener('click', function (event) {
+    if (event.target.classList.contains('pop-up__button-close_full')) {
+        event.preventDefault();
+        closePopupFull();
+    }
+});
+
+// Закрытие на оверлей 
+popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        closePopup();
+        closePopupNew();
+        closePopupFull();
+    }
+});
+
+popupPictureOverlay.addEventListener('click', (e) => {
+    if (e.target === popupPictureOverlay) {
+        closePopupFull();
+    }
+});
+
+// Закрытие на esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closePopup();
+        closePopupNew();
+        closePopupFull();
+    }
+});
+
+//функция закрытия попап
+const closePopup = function () {
+    popup.classList.remove('pop-up__all_active');
+    formErrorLink.classList.remove('pop-up__errors_active');
+    console.log('Popup closed!');
+};
+
+export {closePopup};
+
+//функция закрытия попап добавления карточки
+const closePopupNew = function () {
+    popupPictureNew.classList.remove('pop-up__all_active');
+    console.log('Popup closedNew!');
+};
+
+//открытие попап изменения данных
+openPopupButtons.addEventListener('click', (e) => {
+    e.preventDefault();
+    popup.classList.add('pop-up__all_active');
+    document.getElementById('inputName').value = nameText;
+    document.getElementById('inputInfo').value = infoText;
+});

@@ -1,0 +1,13 @@
+.pop-up__button-edit_active {
+    background-color: #000;
+    color: #FFF;
+    border: 2px solid #000;
+}
+
+.pop-up__button-edit:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+
+

@@ -1,0 +1,25 @@
+.pop-up__button-close_full {
+    padding: 0;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border: none;
+    background-image: url(../../../../images/Close_Icon.png);
+    background-color: transparent;
+}
+
+.pop-up__button-close_full:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 767px) {
+    .pop-up__button-close_full {
+        width: 20px;
+        height: 20px;
+        right: 19px;
+    }
+}

@@ -1,7 +1,6 @@
 .profile-popup {
     display: flex;
     visibility: hidden;
-    opacity: 0;
     transition: visibility 0.5s, opacity 0.5s linear;
     justify-content: center;
     align-items: center;
@@ -12,4 +11,17 @@
     margin: auto;
     min-width: 100vh;
     min-height: 100vh;
+}
+
+@media screen and (max-width: 767px) {
+    .profile-popup {
+        min-width: 0;
+        min-height: 0;
+        max-width: 282px;
+        top: 123px;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
